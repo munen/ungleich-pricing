@@ -1,10 +1,8 @@
 # ungleich-pricing
 
-FIXME: Write a one-line description of your library/project.
-
-## Overview
-
-FIXME: Write a paragraph about the library/project and highlight its goals.
+This is a frontend only ClojureScript app based on Reagent (which
+again is based on Facebook's React) to render
+[Ungleich Gmbh's](http://ungleich.ch/) pricing.
 
 ## Setup
 
@@ -34,6 +32,6 @@ get live reloading, nor a REPL.
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2014 Munen Alain M. Lafon <munen@200ok.ch>
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
