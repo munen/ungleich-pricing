@@ -31,10 +31,10 @@
                 :hetzner-raid6 1.2
                 :hetzner-glusterfs 1.4}]
     (* ((:selected @app-state) factor)
-        (+ hetzner_base
-        (* (:hd @app-state) hetzner_hd)
-        (* (:memory @app-state) hetzner_memory)
-        (* (:cores @app-state) hetzner_core)))))
+       (+ hetzner_base
+          (* (:hd @app-state) hetzner_hd)
+          (* (:memory @app-state) hetzner_memory)
+          (* (:cores @app-state) hetzner_core)))))
 
 (defn price []
   [:div
