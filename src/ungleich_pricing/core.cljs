@@ -42,6 +42,9 @@
    [:div "Price (incl. vat): " (int (* 1.08 (calculate-price)))]
    ])
 
+(defn switch-hosting [e]
+  (swap! app-state assoc :selected (keyword (-> e .-target.value))))
+
 (defn main []
   [:div{:class "container"}
    [:div{:class "jumbotron"}
@@ -50,15 +53,15 @@
      [:p [:input{:type "radio"
                  :name "options"
                  :value "hetzner"
-                 :on-click #(swap! app-state assoc :selected (keyword (-> % .-target.value)))}] " Hetzner"]
+                 :on-click #(switch-hosting %)}] " Hetzner"]
      [:p [:input{:type "radio"
                  :name "options"
                  :value "hetzner-raid6"
-                 :on-click #(swap! app-state assoc :selected (keyword (-> % .-target.value)))}] "Hetzner Raid6"]
+                 :on-click #(switch-hosting %)}] "Hetzner Raid6"]
      [:p [:input{:type "radio"
                  :name "options"
                  :value "hetzner-glusterfs"
-                 :on-click #(swap! app-state assoc :selected (keyword (-> % .-target.value)))}] "Hetzner GlusterFS" ]]
+                 :on-click #(switch-hosting %)}] "Hetzner GlusterFS" ]]
     [slider :cores]
     [slider :memory]
     [slider :hd]
