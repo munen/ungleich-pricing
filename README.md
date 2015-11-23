@@ -8,7 +8,7 @@ See a demo running [here](http://dispatched.ch/ungleich_pricing/).
 
 ## Integration
 
-Copy [resources/public/js/compiled/ungleich_pricing.js](ungleich_pricing.js) into your web project. Also create a `div` with an id of `app`.
+Copy [foo](resources/public/js/compiled/ungleich_pricing.js) into your web project. Also create a `div` with an id of `app`.
 
 Sit back and enjoy.
 
