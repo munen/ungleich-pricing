@@ -6,7 +6,13 @@ again is based on Facebook's React) to render
 
 See a demo running [here](http://dispatched.ch/ungleich_pricing/).
 
-## Setup
+## Integration
+
+Copy [resources/public/js/compiled/ungleich_pricing.js](ungleich_pricing.js) into your web project. Also create a `div` with an id of `app`.
+
+Sit back and enjoy.
+
+## Setup for development
 
 To get an interactive development environment run:
 
