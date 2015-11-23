@@ -4,6 +4,8 @@ This is a frontend only ClojureScript app based on Reagent (which
 again is based on Facebook's React) to render
 [Ungleich Gmbh's](http://ungleich.ch/) pricing.
 
+See a demo running [here](http://dispatched.ch/ungleich_pricing/).
+
 ## Setup
 
 To get an interactive development environment run:
@@ -28,7 +30,7 @@ To create a production build run:
     lein cljsbuild once min
 
 And open your browser in `resources/public/index.html`. You will not
-get live reloading, nor a REPL. 
+get live reloading, nor a REPL.
 
 ## License
 
