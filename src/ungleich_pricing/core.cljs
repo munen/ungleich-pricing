@@ -3,23 +3,25 @@
 
 (enable-console-print!)
 
-(defonce app-state (atom {:cores 1
+(defonce resources (atom {:cores 1
                           :memory 5
-                          :hd 1
-                          :selected :hetzner}))
+                          :hd 1}))
+
+(defonce selected-hosting (atom :hetzner))
+
 
 (defn log [type]
-  [:input {:type "input" :value (type @app-state) :size 2}])
+  [:input {:type "input" :value (type @resources) :size 2}])
 
 (defn slider [type]
   [:div
    [:span (str type)]
    [log type]
    [:input {:type "range" 
-            :value (type @app-state)
+            :value (type @resources)
             :min 1
             :max 100
-            :on-change #(swap! app-state assoc type (.-target.value %))
+            :on-change #(swap! resources assoc type (-> % .-target .-value))
             }]])
 
 (defn calculate-price []
@@ -30,11 +32,11 @@
         factor {:hetzner 1
                 :hetzner-raid6 1.2
                 :hetzner-glusterfs 1.4}]
-    (* ((:selected @app-state) factor)
+    (* (@selected-hosting factor)
        (+ hetzner_base
-          (* (:hd @app-state) hetzner_hd)
-          (* (:memory @app-state) hetzner_memory)
-          (* (:cores @app-state) hetzner_core)))))
+          (* (:hd @resources) hetzner_hd)
+          (* (:memory @resources) hetzner_memory)
+          (* (:cores @resources) hetzner_core)))))
 
 (defn price []
   [:div
@@ -43,25 +45,24 @@
    ])
 
 (defn switch-hosting [e]
-  (swap! app-state assoc :selected (keyword (-> e .-target.value))))
+  (reset! selected-hosting (keyword (-> e .-target .-value))))
 
+(defn hosting-option [short_name name]
+  [:p
+   [:input {:type "radio"
+            :name "options"
+            :value short_name
+            :checked (= short_name @selected-hosting)
+            :on-click #(switch-hosting %)}] name])
+            
 (defn main []
   [:div{:class "container"}
    [:div{:class "jumbotron"}
     [:h2 "Ungleich Pricing"]
     [:div
-     [:p [:input{:type "radio"
-                 :name "options"
-                 :value "hetzner"
-                 :on-click #(switch-hosting %)}] " Hetzner"]
-     [:p [:input{:type "radio"
-                 :name "options"
-                 :value "hetzner-raid6"
-                 :on-click #(switch-hosting %)}] "Hetzner Raid6"]
-     [:p [:input{:type "radio"
-                 :name "options"
-                 :value "hetzner-glusterfs"
-                 :on-click #(switch-hosting %)}] "Hetzner GlusterFS" ]]
+     [hosting-option :hetzner "Hetzner"]
+     [hosting-option :hetzner-raid6 "Hetzner Raid6"]
+     [hosting-option :hetzner-glusterfs "Hetzner GlusterFS"]]
     [slider :cores]
     [slider :memory]
     [slider :hd]
@@ -74,7 +75,7 @@
 
 
 (defn on-js-reload []
-  ;; optionally touch your app-state to force rerendering depending on
+  ;; optionally touch your resources to force rerendering depending on
   ;; your application
-  ;; (swap! app-state update-in [:__figwheel_countser] inc)
+  ;; (swap! resources update-in [:__figwheel_countser] inc)
 )
