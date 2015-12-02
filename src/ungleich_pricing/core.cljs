@@ -11,7 +11,10 @@
 
 
 (defn log [type]
-  [:input {:type "input" :value (type @resources) :size 2}])
+  [:input {:type "input"
+           :value (type @resources)
+           :size 2
+           :on-change #(swap! resources assoc type (-> % .-target .-value))}])
 
 (defn slider [type]
   [:div
@@ -41,8 +44,7 @@
 (defn price []
   [:div
    [:div "Price: " (int (calculate-price))]
-   [:div "Price (incl. vat): " (int (* 1.08 (calculate-price)))]
-   ])
+   [:div "Price (incl. vat): " (int (* 1.08 (calculate-price)))]])
 
 (defn switch-hosting [e]
   (reset! selected-hosting (keyword (-> e .-target .-value))))
