@@ -40,6 +40,6 @@ get live reloading, nor a REPL.
 
 ## License
 
-Copyright © 2014 Munen Alain M. Lafon <munen@200ok.ch>
+Copyright © 2015 Munen Alain M. Lafon <munen@200ok.ch>
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
